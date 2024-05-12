@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-export const socket = io("http://172.20.10.5:8000", {
+export const socket = io(import.meta.env.VITE_SERVER_URL!, {
   auth: {
     token: localStorage.getItem("token"),
   },

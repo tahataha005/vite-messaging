@@ -1,0 +1,12 @@
+.auth-service {
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.auth-service img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

@@ -1,0 +1,107 @@
+.auth-page {
+  background-image: linear-gradient(to left bottom, #a18cec, #452ca1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  min-height: 410px;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 40px;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.auth-box input:active {
+  outline: none;
+  border-color: #8367e7;
+}
+
+.auth-box input:focus {
+  outline: none;
+  border-color: #8367e7;
+}
+
+.signup-box > h2 {
+  margin: 20px 0 20px 0;
+}
+
+.signup-box {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box {
+  position: absolute;
+  z-index: 10;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+
+.login-content {
+  height: 100%;
+  min-width: 400px;
+  max-width: 400px;
+  padding: 20px;
+  align-items: center;
+}
+
+.login-content h2 {
+  margin: 0px 0 30px 0;
+}
+
+.login-content p {
+  align-self: start;
+  font-size: 12px;
+  margin-bottom: 50px;
+}
+
+.auth-box button {
+  margin-top: 15px;
+}
+
+.auth-container {
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.welcome-box {
+  gap: 5px;
+  padding: 0 40px;
+}
+
+.welcome-box > p {
+  margin-bottom: 20px;
+}
+
+.welcome-box > h3 {
+  margin: 15px;
+}
+
+.welcome-box > img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}

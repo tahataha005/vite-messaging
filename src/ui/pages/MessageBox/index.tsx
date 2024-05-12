@@ -20,11 +20,14 @@ const MessageBox = () => {
     });
 
     const getMessages = async () => {
-      const { data } = await axios.get("http://172.20.10.5:8000/chats", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL!}/chats`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       console.log(data);
 
