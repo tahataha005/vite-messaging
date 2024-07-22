@@ -31,11 +31,11 @@ jobs:
 
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@v2
-        with:
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
 
-      - name: Restart server
-        run: ssh -i "${{secrets.SSH_PRIVATE_KEY}}" ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "sudo systemctl restart ${{secrets.SERVICE_NAME}}"
+      - name: Restart service
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo systemctl restart ${{ secrets.SERVICE_NAME }}"
