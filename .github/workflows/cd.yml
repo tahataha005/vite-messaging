@@ -6,6 +6,8 @@ on:
 
 jobs:
   deploy:
+    needs:
+      - ci
     runs-on: ubuntu-latest
 
     steps:
@@ -24,4 +26,4 @@ jobs:
           SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
 
       - name: Restart server
-        run: ssh -i "${{secrets.SSH_PRIVATE_KEY}}" ${{secret.REMOTE_USER}}@${{secret.REMOTE_HOST}} "sudo systemctl restart ${{secret.SERVICE_NAME}}"
+        run: ssh -i "${{secrets.SSH_PRIVATE_KEY}}" ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "sudo systemctl restart ${{secrets.SERVICE_NAME}}"
