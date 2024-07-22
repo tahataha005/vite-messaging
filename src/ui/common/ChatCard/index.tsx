@@ -7,8 +7,15 @@ import {
   readChat,
   selectChat,
 } from "../../../core/data/local/redux/slices/chats";
+import { Chat } from "../../../core/types/Chat";
+import { FC } from "react";
+import { loadMessages } from "../../../core/data/local/redux/slices/messages";
 
-export const ChatCard = ({ chat }) => {
+type Props = {
+  chat: Chat;
+};
+
+export const ChatCard: FC<Props> = ({ chat }) => {
   const dispatch = useDispatch();
   const { user } = useAuthContext();
   const [params, setParams] = useSearchParams();
@@ -17,11 +24,10 @@ export const ChatCard = ({ chat }) => {
 
   const name = `${chat.users[index].firstName} ${chat.users[index].lastName}`;
   const unreadCount = chat.messages.filter((message) => {
-    return !message.read && user?.id !== message.user;
+    return !message.read && user?._id !== message.user;
   }).length;
   const lastMessage =
-    chat.messages.length !== 0 &&
-    chat.messages[chat.messages.length - 1].message;
+    chat.messages.length !== 0 && chat.messages[chat.messages.length - 1];
   const lastMessageTime =
     chat.messages.length !== 0 &&
     chat.messages[chat.messages.length - 1].createdAt.slice(11, 16);
@@ -33,15 +39,17 @@ export const ChatCard = ({ chat }) => {
         setParams({ room: chat.room });
         await chatApi.readChat(chat.room);
 
-        dispatch(readChat(chat.id));
-        dispatch(selectChat(chat.id));
+        dispatch(selectChat(chat.room));
       }}
     >
       <div className="flex row profile-image" />
       <div className="flex column grow gap-15">
         <p className="bold">{name}</p>
 
-        <p className="grey-text">{lastMessage}</p>
+        <p className="grey-text">
+          {lastMessage && lastMessage.user === user?._id && "You: "}
+          {lastMessage && lastMessage.message}
+        </p>
       </div>
       <div className="flex column center gap-15 chat-details">
         <p>{lastMessageTime}</p>

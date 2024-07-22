@@ -9,7 +9,7 @@ type Props = {
   onClick?: () => void;
 };
 
-export const AuthService: FC<Props> = ({ type, onClick }) => {
+const AuthService: FC<Props> = ({ type, onClick }) => {
   const getLogo = useCallback(() => {
     switch (type) {
       case "google":
@@ -29,3 +29,5 @@ export const AuthService: FC<Props> = ({ type, onClick }) => {
     </div>
   );
 };
+
+export default AuthService;

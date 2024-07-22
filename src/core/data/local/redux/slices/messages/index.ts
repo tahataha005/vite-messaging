@@ -27,11 +27,7 @@ export const messagesSlice = createSlice({
       state.loading = true;
     },
     loadMessages: (state, action) => {
-      const messages = action.payload;
-
-      messages.forEach((message) => {
-        message.id = message._id;
-      });
+      const messages = [...action.payload];
 
       state.loading = false;
       state.list = messages;

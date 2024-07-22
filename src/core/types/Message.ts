@@ -4,7 +4,7 @@ export type Message = {
   id: string;
   message: string;
   user: string;
-  createdAt: String;
+  createdAt: string;
   room?: string;
   read: boolean;
 };

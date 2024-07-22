@@ -48,10 +48,6 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log(state);
-  }, [state]);
-
-  useEffect(() => {
     const init = async () => {
       const token = localStorage.getItem("token");
 
@@ -66,20 +62,21 @@ export const AuthProvider = ({ children }) => {
         try {
           const user = await userApi.getUser();
 
-          const { _id: id, ...info } = user;
-
-          console.log(user);
-
           setState({
             ...state,
             token: token || "",
-            user: {
-              id,
-              ...info,
-            },
+            user,
           });
         } catch (error) {
-          console.log((error as any)?.response?.data);
+          if (error.status === 401) {
+            setState({
+              ...state,
+              loading: false,
+              isAuthenticated: false,
+            });
+          }
+
+          navigate("/auth");
         }
       } else {
         setState({

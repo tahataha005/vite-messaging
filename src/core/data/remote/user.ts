@@ -4,8 +4,21 @@ export const userApi = {
   getUser: async () => {
     try {
       const { data } = await request({
-        route: "/users",
+        route: "/auth",
         method: "GET",
+      });
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  },
+  search: async (query) => {
+    try {
+      const { data } = await request({
+        method: "POST",
+        route: `/users/filter`,
+        data: query,
       });
 
       return data;

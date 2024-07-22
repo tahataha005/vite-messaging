@@ -17,13 +17,13 @@ export const chatApi = {
       console.log(error);
     }
   },
-  createChat: async (room: string) => {
+  createChat: async (email: string) => {
     try {
       const { data } = await request({
         route: "/chats",
         method: "POST",
         data: {
-          room,
+          email,
         },
       });
 
