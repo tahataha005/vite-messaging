@@ -33,30 +33,37 @@ export const chatsSlice = createSlice({
       state.loading = false;
       state.list = list;
     },
+    createChat: (state, action) => {
+      const chat = action.payload;
+
+      state.list.push(chat);
+    },
     chatsError: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
     loadNewMessage: (state, action) => {
-      const message = action.payload;
+      const { message, room } = action.payload;
 
-      state.list = state.list.map((chat) => {
-        if (chat.users.some((user) => (user as any)._id === message.user)) {
-          chat.messages.push(message);
-        }
+      const index = state.list.findIndex((chat) => chat.room === room);
 
-        return chat;
-      });
+      state.list[index].messages.push(message);
+
+      if (state.selected !== null && state.selected?.room === room) {
+        state.selected.messages.push(message);
+      }
     },
     selectChat: (state, action) => {
-      const id = action.payload;
+      const room = action.payload;
 
-      state.selected = state.list.find((chat) => chat.id === id) || null;
+      const index = state.list.findIndex((chat) => chat.room === room);
+
+      state.selected = state.list[index];
     },
     readChat: (state, action) => {
-      const chatId = action.payload;
+      const room = action.payload;
 
-      const chatIndex = state.list.findIndex((c) => c.id === chatId);
+      const chatIndex = state.list.findIndex((c) => c.room === room);
 
       const messages = state.list[chatIndex]?.messages.map((message) => {
         message.read = true;
@@ -65,6 +72,10 @@ export const chatsSlice = createSlice({
       });
 
       state.list[chatIndex].messages = messages;
+
+      if (state.selected !== null && state.selected?.room === room) {
+        state.selected.messages = messages;
+      }
     },
     loadOnline: (state, action) => {
       const { list } = action.payload;
@@ -84,6 +95,7 @@ export const {
   loadNewMessage,
   readChat,
   loadOnline,
+  createChat,
 } = chatsSlice.actions;
 
 export const chatSliceSeletor = (): ChatsSliceState =>

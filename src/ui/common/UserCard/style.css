@@ -1,0 +1,43 @@
+.user-card {
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.selected-card {
+  border: 1px solid #8367e7;
+}
+
+.profile-picture {
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  background-image: url("../../../../public/profile-pic.png");
+  background-position: center;
+  background-size: cover;
+}
+.profile-picture > div {
+  justify-content: center;
+}
+
+.user-card-email {
+  height: min-content;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.online-dot {
+  justify-content: flex-end;
+}
+
+.online-dot > div {
+  width: 10px;
+  height: 10px;
+  background-color: #00ff00;
+  border-radius: 50%;
+  margin-right: 5px;
+}

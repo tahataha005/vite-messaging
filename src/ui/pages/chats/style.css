@@ -2,6 +2,7 @@
   height: 100%;
   width: 30%;
   /* max-width: 300px; */
+  border-right: 1px solid #f0f0f0;
 }
 
 .chats-header {
@@ -45,7 +46,6 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 100%;
-  border-right: 1px solid #f0f0f0;
 }
 
 .chat-list::-webkit-scrollbar {
@@ -70,6 +70,7 @@
   padding: 10px;
   border-bottom: 1px solid #f0f0f0;
   gap: 10px;
+  align-items: center;
 }
 
 .chat-profile-picture {
@@ -156,4 +157,70 @@
 .reciever {
   align-self: flex-start;
   border-bottom-left-radius: 5px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.popup-content {
+  padding: 20px;
+  width: 50%;
+  margin-top: 10%;
+}
+
+.popup > div > input {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #878787;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.popup > div > input:active {
+  outline: none;
+}
+
+.popup > div > input:focus {
+  outline: none;
+  border: 1px solid #8367e7;
+  transition: 0.3s;
+}
+
+.popup-users {
+  border: 1px solid #878787;
+  max-height: 200px;
+  overflow-y: scroll;
+  gap: 5px;
+  min-height: 100px;
+  padding: 5px 0;
+}
+
+.popup-users::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+.popup-users::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0;
+  border-radius: 10px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.loading > div {
+  height: 100px;
 }
