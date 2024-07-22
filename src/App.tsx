@@ -22,7 +22,7 @@ const App = () => {
                 clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
               >
                 <Routes>
-                  <Route path="/" element={<h1>Hello</h1>} />
+                  <Route path="/" element={<h1>Hello World</h1>} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/chats" element={<Chats />} />
                 </Routes>
