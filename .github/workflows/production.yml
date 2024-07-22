@@ -1,12 +1,23 @@
 name: Deploy to EC2
 
 on:
-  workflow_run:
-    workflows: ["First Workflow"]
-    types:
-      - completed
+  push:
+    branches: ["main"]
 
 jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run integration tests
+        run: npm run test
+
   deploy:
     runs-on: ubuntu-latest
     needs: [integration-tests]
