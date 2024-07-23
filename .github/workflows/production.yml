@@ -38,12 +38,12 @@ jobs:
           SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
           target: /home/${{secrets.REMOTE_USER}}/vite-messaging
 
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_SECRET_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Restart service
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo systemctl restart ${{ secrets.SERVICE_NAME }}"
+      - name: Restart Service
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+          "sudo systemctl restart ${{ secrets.SERVICE_NAME }}"
