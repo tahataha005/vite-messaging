@@ -39,4 +39,4 @@ jobs:
           target: /home/${{secrets.REMOTE_USER}}/vite-messaging
 
       - name: Restart service
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo systemctl restart ${{ secrets.SERVICE_NAME }}"
+        run: ssh -o StrictHostKeyChecking=no -i "${{secrets.SSH_PRIVATE_KEY}}" ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo systemctl restart ${{ secrets.SERVICE_NAME }}"
